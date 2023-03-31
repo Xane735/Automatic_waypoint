@@ -28,11 +28,9 @@ with open('waypoints.txt') as f:
         waypoints.append((float(lat), float(lon), float(alt)))
 
 # Writing waypoint file to Pixhawk
-msg = master.mav.mission_count_encode(0, 0,len(waypoints))
-master.mav.send(msg)
 for i, waypoint in enumerate(waypoints):
-    msg = master.mav.mission_item_encode( 0, 0, i, 0, mavutil.mavlink.MAV_CMD_NAV_WAYPOINT, 0, 0, 0, 0, waypoint[0], waypoint[1], waypoint[2])
-    # waypoint[0] is latitude waypoint[1] is longitude waypoint[2] is altitude
+    msg = mavutil.mavlink.MAVLink_mission_item_message(0, 0, i, mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT,
+    mavutil.mavlink.MAV_CMD_NAV_WAYPOINT, 0, 0, 0, 0, 0, 0, waypoint[0], waypoint[1], waypoint[2])
     master.mav.send(msg)
 
 # Load a mission file
