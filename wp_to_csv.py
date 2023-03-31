@@ -1,4 +1,4 @@
-#Python Code to convert multiple .waypoints files in one directory to .cvs files in another directory
+#Python Code to convert multiple .waypoints files in one directory to .csv files in another directory
 #install pandas library before running (pip install pandas)
 #enter the directory where .waypoints files are stored and also enter where the .cvs files should be stored
 
